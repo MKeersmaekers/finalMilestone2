@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mariadb:
+    image: mikkyg/mk-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: db_root_password
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_password
+    ports:
+      - "3306:3306"
+
+  lighttpd:
+    image: mikkyg/mk-lighttpd
+    ports:
+      - "8080:80"
+    depends_on:
+      - nodejs
+
+  nodejs:
+    image: mikkyg/mk-nodejs
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mariadb
+    environment:
+      - DB_HOST=mariadb
+      - DB_USER=db_user
+      - DB_PASSWORD=db_password
+      - DB_DATABASE=mydatabase

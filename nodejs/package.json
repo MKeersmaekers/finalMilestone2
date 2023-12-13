@@ -1,0 +1,14 @@
+{
+  "name": "mk-nodejs",
+  "version": "1.0.0",
+  "description": "Node.js app with MySQL integration",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "latest",
+    "mysql": "latest",
+    "cors": "latest"
+  }
+}
